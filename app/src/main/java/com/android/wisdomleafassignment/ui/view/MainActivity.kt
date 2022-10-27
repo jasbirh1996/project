@@ -1,9 +1,12 @@
 package com.android.wisdomleafassignment.ui.view
 
+import android.app.Activity
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.viewModels
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.wisdomleafassignment.R
@@ -29,7 +32,11 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
+companion object{
+    fun refresh(fragmentManager : FragmentManager) {
+     fragmentManager.beginTransaction().replace(R.id.mainContainer,MainFragment()).commit()
+    }
+}
 
 
 }

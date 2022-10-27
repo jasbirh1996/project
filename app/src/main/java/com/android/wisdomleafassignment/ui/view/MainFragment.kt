@@ -1,6 +1,7 @@
 package com.android.wisdomleafassignment.ui.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -38,6 +39,11 @@ class MainFragment : Fragment() {
         initEssentials()
         setRecyclerView()
         fetchApiData()
+        binding.refresh.setOnClickListener {
+            MainActivity.refresh(requireActivity().supportFragmentManager)
+
+
+        }
     }
 
     private fun fetchApiData() {
@@ -56,7 +62,7 @@ class MainFragment : Fragment() {
     private fun initEssentials(){
         adapter = DataAdapter(object :DataAdapter.OnItemTap{
             override fun itemTapped(data: DataResponseItem) {
-                Toast.makeText(requireContext(),data.id.toString(),Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(),data.author.toString(),Toast.LENGTH_LONG).show()
 
             }
 

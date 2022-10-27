@@ -36,8 +36,8 @@ class DataAdapter(val listener : OnItemTap? = null) : PagingDataAdapter<DataResp
         binding.apply {
             Picasso.get().load(data.download_url.toString()).into(imageView)
             Log.e("imagepath",data.url)
-            id.setText(data.id.toString())
-            author.setText(data.author.toString())
+            id.setText( "Id "+ data.id.toString())
+            author.setText("Author "+data.author.toString())
         }
 
 
