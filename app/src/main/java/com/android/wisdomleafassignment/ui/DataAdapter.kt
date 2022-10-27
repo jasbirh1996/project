@@ -1,5 +1,6 @@
 package com.android.wisdomleafassignment.ui
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.android.wisdomleafassignment.R
 import com.android.wisdomleafassignment.data.model.DataResponseItem
+import com.android.wisdomleafassignment.databinding.ItemdataBinding
 import com.bumptech.glide.Glide
+import com.squareup.picasso.Picasso
 
 class DataAdapter : PagingDataAdapter<DataResponseItem, DataAdapter.MyViewHolder>(DiffUtilCallBack()) {
 
@@ -19,19 +22,22 @@ class DataAdapter : PagingDataAdapter<DataResponseItem, DataAdapter.MyViewHolder
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val inflater = LayoutInflater.from(parent.context).inflate(R.layout.itemdata, parent, false)
+        val itembinding = ItemdataBinding.inflate(LayoutInflater.from(parent.context),parent,false)
 
-        return MyViewHolder(inflater)
+        return MyViewHolder(itembinding)
     }
 
-    class MyViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        private val image = view.findViewById<ImageView>(R.id.imageView)!!
-        private val id = view.findViewById<TextView>(R.id.id)
-        private val author = view.findViewById<TextView>(R.id.author)
+    class MyViewHolder(val binding : ItemdataBinding): RecyclerView.ViewHolder(binding.root) {
+
         fun bind(data: DataResponseItem) {
-            Glide.with(itemView.context).load(data.url).into(image)
+        binding.apply {
+            Picasso.get().load(data.download_url.toString()).into(imageView)
+            Log.e("imagepath",data.url)
             id.setText(data.id.toString())
             author.setText(data.author.toString())
+        }
+
+
         }
     }
 
