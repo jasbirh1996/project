@@ -15,10 +15,13 @@ import com.android.wisdomleafassignment.databinding.ItemdataBinding
 import com.bumptech.glide.Glide
 import com.squareup.picasso.Picasso
 
-class DataAdapter : PagingDataAdapter<DataResponseItem, DataAdapter.MyViewHolder>(DiffUtilCallBack()) {
+class DataAdapter(val listener : OnItemTap? = null) : PagingDataAdapter<DataResponseItem, DataAdapter.MyViewHolder>(DiffUtilCallBack()) {
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.bind(getItem(position)!!)
+        holder.itemView.setOnClickListener {
+            listener?.itemTapped(getItem(position)!!)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -51,6 +54,10 @@ class DataAdapter : PagingDataAdapter<DataResponseItem, DataAdapter.MyViewHolder
                     && oldItem.url == newItem.url
         }
 
+    }
+
+    interface OnItemTap{
+        fun itemTapped(data : DataResponseItem)
     }
 
 }
