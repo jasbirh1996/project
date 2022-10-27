@@ -36,6 +36,7 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // adapter setup
         initEssentials()
         setRecyclerView()
         fetchApiData()
@@ -45,7 +46,7 @@ class MainFragment : Fragment() {
 
         }
     }
-
+// this function use paging and update data
     private fun fetchApiData() {
         lifecycleScope.launch {
             viewModel.fetchApiLiveData().collectLatest {
@@ -58,7 +59,7 @@ class MainFragment : Fragment() {
         binding.rvData.layoutManager = GridLayoutManager(requireContext(), 1)
         binding.rvData.adapter = adapter
     }
-
+// adapter with listener , this listener will listen when user taps
     private fun initEssentials(){
         adapter = DataAdapter(object :DataAdapter.OnItemTap{
             override fun itemTapped(data: DataResponseItem) {

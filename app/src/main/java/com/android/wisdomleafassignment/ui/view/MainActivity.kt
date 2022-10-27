@@ -20,19 +20,21 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-
+    // root  view
+    // one Activity multiple fragment mvvm project
     private lateinit var binding : ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        // navigating to splash
         supportFragmentManager.beginTransaction().replace(R.id.mainContainer,SplashFragment()).commit()
 
 
     }
 
 companion object{
+    // for refreshing
     fun refresh(fragmentManager : FragmentManager) {
      fragmentManager.beginTransaction().replace(R.id.mainContainer,MainFragment()).commit()
     }

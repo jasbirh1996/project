@@ -29,21 +29,14 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//       requireActivity().requestWindowFeature(Window.FEATURE_NO_TITLE)
-//        setViewOnfullScreen(requireContext())
-
+// to delay 5 sec we are using coroutines scope
         lifecycleScope.launch {
             delay(5000)
+            // navigating to main view
             requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container,MainFragment()).commit()
         }
     }
-    // set view on full screen
-    fun setViewOnfullScreen(context : Context){
-        (context as Activity).requestWindowFeature(Window.FEATURE_NO_TITLE)
-        context.window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.
-            LayoutParams.FLAG_FULLSCREEN)
-    }
+
 
 
 
