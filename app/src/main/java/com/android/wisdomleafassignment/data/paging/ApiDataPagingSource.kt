@@ -19,7 +19,7 @@ constructor(private val apiInterface: ApiInterface) :
         return try {
 
 
-            val response = apiInterface.getList(limit.toString(),"").body()
+            val response = apiInterface.getList(currentPageKey.toString(),limit.toString()).body()
             val mList = response
             LoadResult.Page(
                 data = mList!!,
